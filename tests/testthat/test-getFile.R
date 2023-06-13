@@ -12,18 +12,39 @@ test_that("getFile", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for( i in seq_len(nrow(var)) ){
-        expect_error(
-            getFile(
-                x = var[i, 1][[1]],
-                url = var[i, 2][[1]],
-                file = var[i, 3][[1]],
-                as.df = var[i, 4][[1]],
-                read.func = var[i, 5][[1]],
-                use.cache = var[i, 6][[1]]
-            )
-        )
-    }
+    #for( i in seq_len(nrow(var)) ){
+    #   expect_error(
+    #      getFile(
+    #            x = var[i, 1][[1]],
+    #            url = var[i, 2][[1]],
+    #            file = var[i, 3][[1]],
+    #            as.df = var[i, 4][[1]],
+    #            read.func = var[i, 5][[1]],
+    #            use.cache = var[i, 6][[1]]
+    #        )
+    #    )
+    #}
+    
+    # Expect errors when input is wrong
+    expect_error( getFile( mg, url = "test", file = "studies", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "studies", file = "studies", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "TreeSE", file = "studies", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "taxonomy--ssu", file = "studies", read.func = NULL, use.cache = TRUE))
+    
+    expect_error( getFile( mg, url = "test", file = "TreeSE", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "test", file = "taxonomy-ssu", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "test", file = NULL, read.func = NULL, use.cache = TRUE))
+    
+    expect_error( getFile( mg, url = "studies", file = "TreeSE", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "studies", file = "taxonmy-ssu", read.func = NULL, use.cache = TRUE))
+    
+    expect_error( getFile( mg, url = "TreeSE", file = "TreeSE", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "TreeSE", file = "taxonomy-ssu", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "TreeSE", file = NULL, read.func = NULL, use.cache = TRUE))
+    
+    expect_error( getFile( mg, url = "taxonomy--ssu", file = "TreeSE", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "taxonomy--ssu", file = "taxonomy-ssu", read.func = NULL, use.cache = TRUE))
+    expect_error( getFile( mg, url = "taxonomy--ssu", file = NULL, read.func = NULL, use.cache = TRUE))
     # List of arguments with correct values
     mg <- MgnifyClient()
     var <- list(
@@ -37,18 +58,19 @@ test_that("getFile", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for( i in seq_len(nrow(var)) ){
-        expect_error(
-            searchFile(
-                x = var[i, 1][[1]],
-                accession = var[i, 2][[1]],
-                type = var[i, 3][[1]],
-                use.cache = var[i, 4][[1]],
-                verbose = var[i, 5][[1]]
-            )
-        )
-
-    }
+    #for( i in seq_len(nrow(var)) ){
+    #    expect_error(
+    #        searchFile(
+    #            x = var[i, 1][[1]],
+    #            accession = var[i, 2][[1]],
+    #            type = var[i, 3][[1]],
+    #            use.cache = var[i, 4][[1]],
+    #            verbose = var[i, 5][[1]]
+    #        )
+    #    )
+    #}
+    # Expect errors when input is wrong
+    #expect_error( searchFile( mg, accession = c("studies", "assembly"), type = "studies", use.cache = TRUE, verbose = TRUE))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
 

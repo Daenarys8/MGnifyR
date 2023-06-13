@@ -19,20 +19,54 @@ test_that("getResult", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for( i in seq_len(nrow(var)) ){
-        expect_error(
-            suppressWarnings(
-            getResult(
-                x = var[i, 1][[1]],
-                accession = var[i, 2][[1]],
-                output = var[i, 3][[1]],
-                get.taxa = var[i, 4][[1]],
-                get.func = var[i, 5][[1]],
-                use.cache = var[i, 6][[1]],
-                verbose = var[i, 7][[1]],
-            ))
-        )
-    }
+    #for( i in seq_len(nrow(var)) ){
+    #    expect_error(
+    #        suppressWarnings(
+    #        getResult(
+    #            x = var[i, 1][[1]],
+    #            accession = var[i, 2][[1]],
+    #            output = var[i, 3][[1]],
+    #            get.taxa = var[i, 4][[1]],
+    #            get.func = var[i, 5][[1]],
+    #            use.cache = var[i, 6][[1]],
+    #            verbose = var[i, 7][[1]],
+    #        ))
+    #    )
+    #}
+    
+    # Expect errors when input is wrong
+    
+    expect_error( suppressWarnings( getResult( mg, accession = "test", output = "TreeSE", get.taxa = TRUE, get.func = FALSE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "studies", output = "TreeSE", get.taxa = TRUE, get.func = FALSE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("studies", "assembly"), output = "TreeSE", get.taxa = FALSE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "TreeSE", output = "TreeSE", get.taxa = TRUE, get.func = FALSE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("TreeSE", "phyloseq"), output = "TreeSE", get.taxa = FALSE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "taxonomy-ssu", output = "TreeSE", get.taxa = TRUE, get.func = FALSE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("taxonomy-ssu", "go-slim"), output = "TreeSE", get.taxa = FALSE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    
+    expect_error( suppressWarnings( getResult( mg, accession = "test", output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "studies", output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("studies", "assembly"), output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "TreeSE", output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("TreeSE", "phyloseq"), output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "taxonomy-ssu", output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("taxonomy-ssu", "go-slim"), output = "TreeSE", get.taxa = TRUE, get.func = TRUE, use.cache = TRUE, verbose = TRUE, )))
+    
+    expect_error( suppressWarnings( getResult( mg, accession = "test", output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "studies", output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("studies", "assembly"), output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "TreeSE", output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("TreeSE", "phyloseq"), output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "taxonomy-ssu", output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("taxonomy-ssu", "go-slim"), output = "TreeSE", get.taxa = TRUE, get.func = "test", use.cache = TRUE, verbose = TRUE, )))
+    
+    expect_error( suppressWarnings( getResult( mg, accession = "test", output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "studies", output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("studies", "assembly"), output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "TreeSE", output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("TreeSE", "phyloseq"), output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = "taxonomy-ssu", output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
+    expect_error( suppressWarnings( getResult( mg, accession = c("taxonomy-ssu", "go-slim"), output = "TreeSE", get.taxa = TRUE, get.func = "studies", use.cache = TRUE, verbose = TRUE, )))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
 
