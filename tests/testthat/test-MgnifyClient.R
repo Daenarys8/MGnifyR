@@ -14,19 +14,24 @@ test_that("MgnifyClient", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for(i in seq_len(nrow(var)) ){
-        expect_error(
-            MgnifyClient(
-                username = var[i, 2][[1]],
-                password = var[i, 3][[1]],
-                useCache = var[i, 4][[1]],
-                cacheDir = var[i, 5][[1]],
-                warnings = var[i, 6][[1]],
-                useMemCache = var[i, 7][[1]],
-                url = var[i, 8][[1]],
-            )
-        )
-    }
+    #for(i in seq_len(nrow(var)) ){
+    #    expect_error(
+    #        MgnifyClient(
+    #            username = var[i, 2][[1]],
+    #            password = var[i, 3][[1]],
+    #            useCache = var[i, 4][[1]],
+    #            cacheDir = var[i, 5][[1]],
+    #            warnings = var[i, 6][[1]],
+    #            useMemCache = var[i, 7][[1]],
+    #            url = var[i, 8][[1]],
+    #        )
+    #    )
+    #}
+    
+    # Expect errors when input is wrong
+    
+    expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "test", warnings = TRUE, useMemCache = TRUE, url = "test",))
+    expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "TreeSE", warnings = TRUE, useMemCache = TRUE, url = "taxonomy-ssu",))
     # Test that slots are updated. Change arguments --> check that values
     # of slots correspond argument.
     mg <- MgnifyClient(

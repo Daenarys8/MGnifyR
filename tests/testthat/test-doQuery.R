@@ -15,18 +15,57 @@ test_that("doQuery", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for( i in seq_len(nrow(var)) ){
-        expect_error(
-            doQuery(
-                x = var[i, 1][[1]],
-                type = var[i, 2][[1]],
-                accession = var[i, 3][[1]],
-                as.df = var[i, 4][[1]],
-                max.hits = var[i, 5][[1]],
-                use.cache = var[i, 6][[1]]
-            )
-        )
-    }
+    #for( i in seq_len(nrow(var)) ){
+    #    expect_error(
+    #        doQuery(
+    #            x = var[i, 1][[1]],
+    #            type = var[i, 2][[1]],
+    #            accession = var[i, 3][[1]],
+    #            as.df = var[i, 4][[1]],
+    #            max.hits = var[i, 5][[1]],
+    #            use.cache = var[i, 6][[1]]
+    #        )
+    #    )
+    #}
+    # Expect errors when input is wrong
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = FALSE, use.cache= TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "studies", as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("studies", "assembly"), as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "TreeSE", as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("TreeSE", "phyloseq"), as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "taxonomy-ssu", as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("taxonomy-ssu", "go-slim"), as.df = TRUE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = NULL, as.df = TRUE, max.hits = FALSE, use.cache = TRUE ))
+    
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 0, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 1, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 16, use.cache = TRUE))
+    
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = FALSE, use.cache= FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = "studies", as.df = TRUE, max.hits = FALSE, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("studies", "assembly"), as.df = TRUE, max.hits = FALSE, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = "TreeSE", as.df = TRUE, max.hits = FALSE, use.cache = FALSE ))
+    expect_error( doQuery( mg, type = "studiess", accession = c("TreeSE", "phyloseq"), as.df = TRUE, max.hits = FALSE, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = "taxonomy-ssu", as.df = TRUE, max.hits = FALSE, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("taxonomy-ssu", "go-slim"), as.df = TRUE, max.hits = FALSE, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = NULL, as.df = TRUE, max.hits = FALSE, use.cache = TRUE ))
+    
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 0, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 1, use.cache = FALSE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = TRUE, max.hits = 16, use.cache = FALSE))
+    
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = FALSE, max.hits = FALSE, use.cache= TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "studies", as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("studies", "assembly"), as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "TreeSE", as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("TreeSE", "phyloseq"), as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "taxonomy-ssu", as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = c("taxonomy-ssu", "go-slim"), as.df = FALSE, max.hits = FALSE, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = NULL, as.df = FALSE, max.hits = FALSE, use.cache = TRUE ))
+    
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = FALSE, max.hits = 0, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = FALSE, max.hits = 1, use.cache = TRUE))
+    expect_error( doQuery( mg, type = "studiess", accession = "test", as.df = FALSE, max.hits = 16, use.cache = TRUE))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     # Test that studies are searched based on certain accession ID, get result

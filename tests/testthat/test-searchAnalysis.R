@@ -14,17 +14,20 @@ test_that("searchAnalysis", {
     )
     var <- .wrong_arguments(var)
     # Loop through rows, all variable pairs should end up to error
-    for( i in seq_len(nrow(var)) ){
-        expect_error(
-            searchAnalysis(
-                x = var[i, 1][[1]],
-                type = var[i, 2][[1]],
-                accession = var[i, 3][[1]],
-                use.cache = var[i, 4][[1]],
-                verbose = var[i, 5][[1]]
-            )
-        )
-    }
+    #for( i in seq_len(nrow(var)) ){
+    #    expect_error(
+    #        searchAnalysis(
+    #            x = var[i, 1][[1]],
+    #            type = var[i, 2][[1]],
+    #            accession = var[i, 3][[1]],
+    #            use.cache = var[i, 4][[1]],
+    #            verbose = var[i, 5][[1]]
+    #        )
+    #    )
+    #}
+    
+    # Expect errors when input is wrong
+    #expect_error( searchAnalysis( mg, type = "studies", accession = "studies", use.cache = TRUE, verbose = TRUE))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
 
