@@ -26,10 +26,14 @@ test_that("getMetadata", {
     
     # Expect errors when input is wrong
     
+<<<<<<< HEAD
     expect_error( getMetadata( mg, accession = "studies", use.cache = "test", verbose = TRUE))
     expect_error( getMetadata( mg, accession = TRUE, use.cache = TRUE, verbose = TRUE))
     expect_error( getMetadata( mg, accession = FALSE, use.cache = TRUE, verbose = TRUE))
     expect_error( getMetadata( mg, accession = "test", use.cache = "studies", verbose = TRUE))
+=======
+    #expect_error( getMetadata( mg, accession = "studies", use.cache = TRUE, verbose = TRUE))
+>>>>>>> 6b1e67f9c817fbaf535cdea2c2bc2228619e7972
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

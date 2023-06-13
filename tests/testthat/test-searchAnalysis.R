@@ -27,6 +27,7 @@ test_that("searchAnalysis", {
     #}
     
     # Expect errors when input is wrong
+<<<<<<< HEAD
     expect_error( searchAnalysis( mg, type = "studies", accession = "test", use.cache = "studies", verbose = TRUE))
     expect_error( searchAnalysis( mg, type = "studies", accession = "studies", use.cache = "test", verbose = TRUE))
     expect_error( searchAnalysis( mg, type = "samples", accession = c("studies", "assembly"), use.cache = "studies", verbose = TRUE))
@@ -40,6 +41,9 @@ test_that("searchAnalysis", {
     expect_error( searchAnalysis( mg, type = "samples", accession = TRUE, use.cache = TRUE, verbose = TRUE))
     expect_error( searchAnalysis( mg))
     
+=======
+    #expect_error( searchAnalysis( mg, type = "studies", accession = "studies", use.cache = TRUE, verbose = TRUE))
+>>>>>>> 6b1e67f9c817fbaf535cdea2c2bc2228619e7972
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
 

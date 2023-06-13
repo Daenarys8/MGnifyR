@@ -31,11 +31,15 @@ test_that("MgnifyClient", {
     # Expect errors when input is wrong
     
     expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "test", warnings = TRUE, useMemCache = TRUE, url = "test",))
+<<<<<<< HEAD
     expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "study", warnings = TRUE, useMemCache = TRUE, url = "taxonomy-ssu",))
     expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "taxonomy-ssu", warnings = TRUE, useMemCache = TRUE, url = "study",))
     expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "TreeSE", warnings = TRUE, useMemCache = TRUE, url = "TreeSE",))
     
     expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = NULL, warnings = TRUE, useMemCache = TRUE, url = "test",))
+=======
+    expect_error( MgnifyClient( username = "test", password = "study", useCache = TRUE, cacheDir = "TreeSE", warnings = TRUE, useMemCache = TRUE, url = "taxonomy-ssu",))
+>>>>>>> 6b1e67f9c817fbaf535cdea2c2bc2228619e7972
     # Test that slots are updated. Change arguments --> check that values
     # of slots correspond argument.
     mg <- MgnifyClient(
