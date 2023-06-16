@@ -16,24 +16,24 @@ test_that("MgnifyClient", {
     )
     expect_error(
         MgnifyClient(
-            username = "test",
+            username = 8,
             password = "study",
             useCache = TRUE,
-            cacheDir = "study",
+            cacheDir = "test",
             warnings = TRUE,
             useMemCache = TRUE,
-            url = "taxonomy-ssu",
+            url = "test",
         )
     )
     expect_error(
         MgnifyClient(
-            username = "test",
+            username = 6.5,
             password = "study",
             useCache = TRUE,
-            cacheDir = "taxonomy-ssu",
+            cacheDir = "test",
             warnings = TRUE,
             useMemCache = TRUE,
-            url = "study",
+            url = "test",
         )
     )
     expect_error(
