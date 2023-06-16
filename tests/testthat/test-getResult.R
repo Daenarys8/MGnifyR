@@ -3,7 +3,6 @@ test_that("getResult", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(suppressWarnings(
         getResult(
             mg,
@@ -343,7 +342,42 @@ test_that("getResult", {
             
         )
     ))
-    
+    expect_error(suppressWarnings(
+        getResult(
+            mg,
+            accession = 5,
+            output = "TreeSE",
+            get.taxa = TRUE,
+            get.func = "studies",
+            use.cache = TRUE,
+            verbose = TRUE,
+            
+        )
+    ))
+    expect_error(suppressWarnings(
+        getResult(
+            mg,
+            accession = 24.8,
+            output = "TreeSE",
+            get.taxa = TRUE,
+            get.func = "studies",
+            use.cache = TRUE,
+            verbose = TRUE,
+            
+        )
+    ))
+    expect_error(suppressWarnings(
+        getResult(
+            mg,
+            accession = "12",
+            output = "TreeSE",
+            get.taxa = TRUE,
+            get.func = "studies",
+            use.cache = TRUE,
+            verbose = TRUE,
+            
+        )
+    ))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     

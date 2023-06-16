@@ -3,7 +3,6 @@ test_that("MgnifyClient", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(
         MgnifyClient(
             username = "test",
@@ -70,6 +69,73 @@ test_that("MgnifyClient", {
             url = "taxonomy-ssu",
         )
     )
+    expect_error(
+        MgnifyClient(
+            username = TRUE,
+            password = "study",
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = "taxonomy-ssu",
+        )
+    )
+    expect_error(
+        MgnifyClient(
+            username = "test",
+            password = TRUE,
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = "taxonomy-ssu",
+        )
+    )
+    expect_error(
+        MgnifyClient(
+            username = "test",
+            password = 3.5,
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = "taxonomy-ssu",
+        )
+    )
+    expect_error(
+        MgnifyClient(
+            username = "test",
+            password = "test",
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = "taxonomy-ssu",
+        )
+    )
+    expect_error(
+        MgnifyClient(
+            username = "test",
+            password = "test",
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = 5,
+        )
+    )
+    expect_error(
+        MgnifyClient(
+            username = "test",
+            password = "test",
+            useCache = TRUE,
+            cacheDir = "TreeSE",
+            warnings = TRUE,
+            useMemCache = TRUE,
+            url = "5",
+        )
+    )
+    
     
     # Test that slots are updated. Change arguments --> check that values
     # of slots correspond argument.

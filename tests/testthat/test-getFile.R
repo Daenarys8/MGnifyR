@@ -3,7 +3,6 @@ test_that("getFile", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(getFile(
         mg,
         url = "test",
@@ -119,10 +118,29 @@ test_that("getFile", {
         read.func = NULL,
         use.cache = TRUE
     ))
+    expect_error(getFile(
+        mg,
+        url = 25,
+        file = NULL,
+        read.func = NULL,
+        use.cache = TRUE
+    ))
+    expect_error(getFile(
+        mg,
+        url = "25",
+        file = NULL,
+        read.func = NULL,
+        use.cache = TRUE
+        
+    ))
+    expect_error(getFile(
+        mg,
+        url = "test",
+        file = 12,
+        read.func = NULL,
+        use.cache = TRUE
+    ))
     
-    
-    
-    # Expect errors when input is wrong
     expect_error(searchFile(
         mg,
         accession = TRUE,
@@ -154,6 +172,13 @@ test_that("getFile", {
     expect_error(searchFile(
         mg,
         accession = c("studies", "assembly"),
+        type = "samples",
+        use.cache = TRUE,
+        verbose = NULL
+    ))
+    expect_error(searchFile(
+        mg,
+        accession = 12,
         type = "samples",
         use.cache = TRUE,
         verbose = NULL

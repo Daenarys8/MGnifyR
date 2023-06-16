@@ -3,7 +3,6 @@ test_that("doQuery", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(
         doQuery(
             mg,
@@ -29,6 +28,16 @@ test_that("doQuery", {
             mg,
             type = "studiess",
             accession = c("studies", "assembly"),
+            as.df = TRUE,
+            max.hits = FALSE,
+            use.cache = TRUE
+        )
+    )
+    expect_error(
+        doQuery(
+            mg,
+            type = c("studies", "assembly"),
+            accession = "studies",
             as.df = TRUE,
             max.hits = FALSE,
             use.cache = TRUE
@@ -336,6 +345,34 @@ test_that("doQuery", {
             accession = "test",
             as.df = FALSE,
             max.hits = 16,
+            use.cache = TRUE
+        )
+    )
+    expect_error(
+        doQuery(
+            mg,
+            type = TRUE,
+            accession = "test",
+            as.df = FALSE,
+            max.hits = 0,
+            use.cache = TRUE
+        )
+    )
+    expect_error(doQuery(
+        mg,
+        type = 4,
+        accession = "test",
+        as.df = FALSE,
+        max.hits = 0,
+        use.cache = TRUE
+    ))
+    expect_error(
+        doQuery(
+            mg,
+            type = "studies",
+            accession = 3,
+            as.df = FALSE,
+            max.hits = 0,
             use.cache = TRUE
         )
     )

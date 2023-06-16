@@ -3,7 +3,6 @@ test_that("searchAnalysis", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(
         searchAnalysis(
             mg,
@@ -87,6 +86,22 @@ test_that("searchAnalysis", {
             verbose = TRUE
         )
     )
+    expect_error(
+        searchAnalysis(
+            mg,
+            type = "samples",
+            accession = 4.5,
+            use.cache = TRUE,
+            verbose = TRUE
+        )
+    )
+    expect_error(searchAnalysis(
+        mg,
+        type = "samples",
+        accession = 60,
+        use.cache = TRUE,
+        verbose = TRUE
+    ))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

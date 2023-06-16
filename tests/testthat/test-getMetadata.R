@@ -3,7 +3,6 @@ test_that("getMetadata", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    # Expect errors when input is wrong
     expect_error(getMetadata(
         mg,
         accession = "studies",
@@ -28,7 +27,13 @@ test_that("getMetadata", {
         use.cache = "studies",
         verbose = TRUE
     ))
-    
+    expect_error(getMetadata(
+        mg,
+        accession = 87,
+        use.cache = TRUE,
+        verbose = TRUE
+    ))
+   
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     
