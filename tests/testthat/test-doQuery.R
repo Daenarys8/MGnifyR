@@ -3,379 +3,69 @@ test_that("doQuery", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "studies",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("studies", "assembly"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = c("studies", "assembly"),
-            accession = "studies",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "TreeSE",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("TreeSE", "phyloseq"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "taxonomy-ssu",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("taxonomy-ssu", "go-slim"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = NULL,
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
+    expect_error(doQuery(mg,
+                         type = "studiess",
+                         accession = "test"))
     
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 0,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 1,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 16,
-            use.cache = TRUE
-        )
-    )
-    
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "studies",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("studies", "assembly"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "TreeSE",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("TreeSE", "phyloseq"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "taxonomy-ssu",
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("taxonomy-ssu", "go-slim"),
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = NULL,
-            as.df = TRUE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 0,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 1,
-            use.cache = FALSE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = TRUE,
-            max.hits = 16,
-            use.cache = FALSE
-        )
-    )
-    
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "studies",
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("studies", "assembly"),
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "TreeSE",
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("TreeSE", "phyloseq"),
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "taxonomy-ssu",
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = c("taxonomy-ssu", "go-slim"),
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = NULL,
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = TRUE
-        )
-    )
-    
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = FALSE,
-            max.hits = 0,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = FALSE,
-            max.hits = 1,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studiess",
-            accession = "test",
-            as.df = FALSE,
-            max.hits = 16,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = TRUE,
-            accession = "test",
-            as.df = FALSE,
-            max.hits = 0,
-            use.cache = TRUE
-        )
-    )
     expect_error(doQuery(
         mg,
-        type = 4,
-        accession = "test",
-        as.df = FALSE,
-        max.hits = 0,
-        use.cache = TRUE
+        type = "studies",
+        accession = c("studies", "assembly"),
+        as.df = NULL
+    ))
+    expect_error(doQuery(
+        mg,
+        type = c("studies", "assembly"),
+        accession = "studies"
+    ))
+    expect_error(doQuery(mg,
+                         type = "studies",
+                         accession = 0, ))
+    
+    expect_error(doQuery(mg,
+                         type = 0,
+                         accession = "test",))
+    
+    expect_error(doQuery(
+        mg,
+        type = "studies",
+        accession = c(TreeSE, "phyloseq"),
     ))
     expect_error(
         doQuery(
             mg,
             type = "studies",
-            accession = 3,
+            accession = "TreeSE",
             as.df = FALSE,
-            max.hits = 0,
+            max.hits = 10.5,
             use.cache = TRUE
         )
     )
+    expect_error(
+        doQuery(
+            mg,
+            type = "studies",
+            accession = c("TreeSE", "phyloseq"),
+            as.df = FALSE,
+            max.hits = FALSE,
+            use.cache = 10
+        )
+    )
+    expect_error(doQuery(mg,
+                         type = "studies",
+                         accession = T))
+    expect_error(doQuery(mg,
+                         type = "studies",
+                         accession = 8.5))
+    expect_error(doQuery(mg,
+                         type = TRUE,
+                         accession = "test",))
+    expect_error(doQuery(mg,
+                         type = 4.9,
+                         accession = "test",))
+    expect_error(doQuery(mg,
+                         type = "studies",
+                         accession = 3,))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

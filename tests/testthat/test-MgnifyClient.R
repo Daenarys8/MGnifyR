@@ -3,69 +3,23 @@ test_that("MgnifyClient", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
+    
+    expect_error(MgnifyClient(username = 8))
+    expect_error(MgnifyClient(username = 6.5))
+    expect_error(MgnifyClient(username = "test",
+                              password = 28))
+    expect_error(MgnifyClient(
+        username = "test",
+        password = "study",
+        cacheDir = tree,
+        
+    ))
     expect_error(
         MgnifyClient(
             username = "test",
             password = "study",
-            useCache = TRUE,
-            cacheDir = "test",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "test",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = 8,
-            password = "study",
-            useCache = TRUE,
-            cacheDir = "test",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "test",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = 6.5,
-            password = "study",
-            useCache = TRUE,
-            cacheDir = "test",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "test",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "study",
-            useCache = TRUE,
             cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "TreeSE",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "study",
-            useCache = TRUE,
-            cacheDir = NULL,
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "test",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "study",
-            useCache = TRUE,
-            cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
+            useMemCache = tree,
             url = "taxonomy-ssu",
         )
     )
@@ -73,66 +27,29 @@ test_that("MgnifyClient", {
         MgnifyClient(
             username = TRUE,
             password = "study",
-            useCache = TRUE,
+            useCache = 87,
             cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
             url = "taxonomy-ssu",
         )
     )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = TRUE,
-            useCache = TRUE,
-            cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "taxonomy-ssu",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = 3.5,
-            useCache = TRUE,
-            cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "taxonomy-ssu",
-        )
-    )
+    expect_error(MgnifyClient(username = "test",
+                              password = TRUE,))
+    expect_error(MgnifyClient(username = "test",
+                              password = tree,))
+    expect_error(MgnifyClient(username = "tree",
+                              password = "test",))
+    expect_error(MgnifyClient(
+        username = "test",
+        password = "test",
+        cacheDir = "TreeSE",
+        url = 5,
+    ))
     expect_error(
         MgnifyClient(
             username = "test",
             password = "test",
-            useCache = TRUE,
             cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "taxonomy-ssu",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "test",
-            useCache = TRUE,
-            cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = 5,
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "test",
-            useCache = TRUE,
-            cacheDir = "TreeSE",
-            warnings = TRUE,
-            useMemCache = TRUE,
-            url = "5",
+            url = TreeSE,
         )
     )
     

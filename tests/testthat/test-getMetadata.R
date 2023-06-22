@@ -9,18 +9,10 @@ test_that("getMetadata", {
         use.cache = "test",
         verbose = TRUE
     ))
-    expect_error(getMetadata(
-        mg,
-        accession = TRUE,
-        use.cache = TRUE,
-        verbose = TRUE
-    ))
-    expect_error(getMetadata(
-        mg,
-        accession = FALSE,
-        use.cache = TRUE,
-        verbose = TRUE
-    ))
+    expect_error(getMetadata(mg,
+                             accession = TRUE))
+    expect_error(getMetadata(mg,
+                             accession = 4.5))
     expect_error(getMetadata(
         mg,
         accession = "test",
@@ -29,11 +21,23 @@ test_that("getMetadata", {
     ))
     expect_error(getMetadata(
         mg,
+        accession = "test",
+        use.cache = 10,
+        verbose = TRUE
+    ))
+    expect_error(getMetadata(
+        mg,
+        accession = "test",
+        use.cache = TRUE,
+        verbose = 10
+    ))
+    expect_error(getMetadata(
+        mg,
         accession = 87,
         use.cache = TRUE,
         verbose = TRUE
     ))
-   
+    
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     

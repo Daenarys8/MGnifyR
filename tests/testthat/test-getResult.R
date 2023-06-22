@@ -3,15 +3,63 @@ test_that("getResult", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = "test",
+        output = 10,
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = "studies",
+        output = Tree,
+        
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = 3.9,
+        output = "TreeSE"
+        
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = 52,
+        output = "TreeSE",
+        
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = NULL,
+        output = "TreeSE",
+        
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = "taxonomy-ssu",
+        output = NULL,
+        
+        
+    )))
+    expect_error(suppressWarnings(getResult(
+        mg,
+        accession = c("taxonomy-ssu", "go-slim"),
+        output = "TreeSE",
+        get.taxa = 7,
+        
+        
+    )))
+    
     expect_error(suppressWarnings(
         getResult(
             mg,
             accession = "test",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = FALSE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            get.taxa = NULL,
+            
             
         )
     ))
@@ -20,10 +68,8 @@ test_that("getResult", {
             mg,
             accession = "studies",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = FALSE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            get.taxa = Test,
+            
             
         )
     ))
@@ -32,10 +78,8 @@ test_that("getResult", {
             mg,
             accession = c("studies", "assembly"),
             output = "TreeSE",
-            get.taxa = FALSE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            get.taxa = "TreeSE",
+            
             
         )
     ))
@@ -44,10 +88,8 @@ test_that("getResult", {
             mg,
             accession = "TreeSE",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = FALSE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            get.func = 2,
+            
             
         )
     ))
@@ -56,10 +98,8 @@ test_that("getResult", {
             mg,
             accession = c("TreeSE", "phyloseq"),
             output = "TreeSE",
-            get.taxa = FALSE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            get.func = NULL,
+            
             
         )
     ))
@@ -68,10 +108,7 @@ test_that("getResult", {
             mg,
             accession = "taxonomy-ssu",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = FALSE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            use.cache = 8,
             
         )
     ))
@@ -80,10 +117,7 @@ test_that("getResult", {
             mg,
             accession = c("taxonomy-ssu", "go-slim"),
             output = "TreeSE",
-            get.taxa = FALSE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            use.cache = NULL,
             
         )
     ))
@@ -93,11 +127,7 @@ test_that("getResult", {
             mg,
             accession = "test",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
-            
+            get.func = "test",
         )
     ))
     expect_error(suppressWarnings(
@@ -105,10 +135,7 @@ test_that("getResult", {
             mg,
             accession = "studies",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            use.cache = "test"
             
         )
     ))
@@ -117,10 +144,7 @@ test_that("getResult", {
             mg,
             accession = c("studies", "assembly"),
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            verbose = test,
             
         )
     ))
@@ -129,10 +153,7 @@ test_that("getResult", {
             mg,
             accession = "TreeSE",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            verbose = 9,
             
         )
     ))
@@ -141,10 +162,7 @@ test_that("getResult", {
             mg,
             accession = c("TreeSE", "phyloseq"),
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            verbose = NULL,
             
         )
     ))
@@ -153,231 +171,11 @@ test_that("getResult", {
             mg,
             accession = "taxonomy-ssu",
             output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("taxonomy-ssu", "go-slim"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE,
+            verbose = "TreeSE",
             
         )
     ))
     
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "test",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "studies",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("studies", "assembly"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "TreeSE",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("TreeSE", "phyloseq"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "taxonomy-ssu",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("taxonomy-ssu", "go-slim"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "test",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "test",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "studies",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("studies", "assembly"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "TreeSE",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("TreeSE", "phyloseq"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "taxonomy-ssu",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("taxonomy-ssu", "go-slim"),
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = 5,
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = 24.8,
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "12",
-            output = "TreeSE",
-            get.taxa = TRUE,
-            get.func = "studies",
-            use.cache = TRUE,
-            verbose = TRUE,
-            
-        )
-    ))
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     

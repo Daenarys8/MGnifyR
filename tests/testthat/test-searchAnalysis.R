@@ -9,25 +9,20 @@ test_that("searchAnalysis", {
             type = "studies",
             accession = "test",
             use.cache = "studies",
-            verbose = TRUE
         )
     )
     expect_error(
         searchAnalysis(
             mg,
-            type = "studies",
-            accession = "studies",
-            use.cache = "test",
-            verbose = TRUE
+            type = studies,
         )
     )
     expect_error(
         searchAnalysis(
             mg,
             type = "samples",
-            accession = c("studies", "assembly"),
-            use.cache = "studies",
-            verbose = TRUE
+            accession = assembly,
+
         )
     )
     
@@ -35,72 +30,64 @@ test_that("searchAnalysis", {
         searchAnalysis(
             mg,
             type = "studies",
-            accession = "TreeSE",
-            use.cache = "studies",
-            verbose = FALSE
+            accession = 67,
+
         )
     )
     expect_error(
         searchAnalysis(
             mg,
             type = "studies",
-            accession = c("TreeSE", "phyloseq"),
-            use.cache = "test",
-            verbose = FALSE
+            accession = TRUE,
+
         )
     )
     expect_error(
         searchAnalysis(
             mg,
-            type = "samples",
+            type = 77,
             accession = c("taxonomy-ssu", "go-slim"),
-            use.cache = "studies",
-            verbose = FALSE
+
         )
     )
     
     expect_error(
         searchAnalysis(
             mg,
-            type = "studies",
-            accession = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE
+            type = NULL,
+            accession = "test",
+
         )
     )
     expect_error(
         searchAnalysis(
             mg,
             type = "studies",
-            accession = FALSE,
-            use.cache = TRUE,
-            verbose = TRUE
+            accession = "test",
+            use.cache = 80,
         )
     )
     expect_error(
         searchAnalysis(
             mg,
             type = "samples",
-            accession = TRUE,
-            use.cache = TRUE,
-            verbose = TRUE
+            accession = "test",
+            use.cache = No,
         )
     )
     expect_error(
         searchAnalysis(
             mg,
             type = "samples",
-            accession = 4.5,
-            use.cache = TRUE,
-            verbose = TRUE
+            accession = "test",
+            verbose = 20
         )
     )
     expect_error(searchAnalysis(
         mg,
         type = "samples",
-        accession = 60,
-        use.cache = TRUE,
-        verbose = TRUE
+        accession = "test",
+        verbose = "Tree"
     ))
     
     # Require internet access

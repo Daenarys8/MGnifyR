@@ -5,7 +5,7 @@ test_that("getFile", {
     
     expect_error(getFile(
         mg,
-        url = "test",
+        url = 10,
         file = "studies",
         read.func = NULL,
         use.cache = TRUE
@@ -13,7 +13,7 @@ test_that("getFile", {
     expect_error(getFile(
         mg,
         url = "studies",
-        file = "studies",
+        file = 10,
         read.func = NULL,
         use.cache = TRUE
     ))
@@ -21,103 +21,32 @@ test_that("getFile", {
         mg,
         url = "TreeSE",
         file = "studies",
-        read.func = NULL,
+        read.func = 10,
         use.cache = TRUE
     ))
-    expect_error(
-        getFile(
-            mg,
-            url = "taxonomy--ssu",
-            file = "studies",
-            read.func = NULL,
-            use.cache = TRUE
-        )
-    )
-    
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = "TreeSE",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = "taxonomy-ssu",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = NULL,
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    
-    expect_error(getFile(
-        mg,
-        url = "studies",
-        file = "TreeSE",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "studies",
-        file = "taxonmy-ssu",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    
-    expect_error(getFile(
-        mg,
-        url = "TreeSE",
-        file = "TreeSE",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "TreeSE",
-        file = "taxonomy-ssu",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "TreeSE",
-        file = NULL,
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    
-    expect_error(
-        getFile(
-            mg,
-            url = "taxonomy--ssu",
-            file = "TreeSE",
-            read.func = NULL,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        getFile(
-            mg,
-            url = "taxonomy--ssu",
-            file = "taxonomy-ssu",
-            read.func = NULL,
-            use.cache = TRUE
-        )
-    )
     expect_error(getFile(
         mg,
         url = "taxonomy--ssu",
-        file = NULL,
+        file = "studies",
+        read.func = NULL,
+        use.cache = 10
+    ))
+    
+    expect_error(getFile(
+        mg,
+        url = "test",
+        file = "TreeSE",
         read.func = NULL,
         use.cache = TRUE
     ))
+    expect_error(getFile(
+        mg,
+        url = "test",
+        file = "taxonomy-ssu",
+        read.func = NULL,
+        use.cache = test
+    ))
+    
     expect_error(getFile(
         mg,
         url = 25,
@@ -125,22 +54,6 @@ test_that("getFile", {
         read.func = NULL,
         use.cache = TRUE
     ))
-    expect_error(getFile(
-        mg,
-        url = "25",
-        file = NULL,
-        read.func = NULL,
-        use.cache = TRUE
-        
-    ))
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = 12,
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    
     expect_error(searchFile(
         mg,
         accession = TRUE,
