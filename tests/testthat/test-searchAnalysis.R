@@ -21,19 +21,15 @@ test_that("searchAnalysis", {
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
     
     # Test that correct analysis IDs are found based on study ID.
-    expect_warning(res <-
-                       searchAnalysis(mg, "studies", "MGYA00097621", verbose = FALSE))
+    expect_warning(res <- searchAnalysis(mg, "studies", "MGYA00097621", verbose = FALSE))
     expect_true(is.null(res))
-    res <-
-        searchAnalysis(mg, "studies", "MGYS00005058", verbose = FALSE)
+    res <- searchAnalysis(mg, "studies", "MGYS00005058", verbose = FALSE)
     expect_true(length(res) > 0)
     expect_true("MGYA00377528" %in% res)
     # Test that correct analysis IDs are found based on sample ID.
-    expect_warning(res <-
-                       searchAnalysis(mg, "samples", "MGYA00097621", verbose = FALSE))
+    expect_warning(res <- searchAnalysis(mg, "samples", "MGYA00097621", verbose = FALSE))
     expect_true(is.null(res))
-    res <-
-        searchAnalysis(mg, "samples", "ERS2161777", verbose = FALSE)
+    res <-  searchAnalysis(mg, "samples", "ERS2161777", verbose = FALSE)
     expect_true(length(res) > 0)
     expect_true("MGYA00293854" %in% res)
 })

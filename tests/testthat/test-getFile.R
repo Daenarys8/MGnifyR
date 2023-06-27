@@ -31,10 +31,7 @@ test_that("getFile", {
     # Test that file search is done correctly based on accession ID.
     # Use studies as type
     mg <- MgnifyClient()
-    res <- searchFile(mg,
-                      type = "studies",
-                      accession = "MGYS00005292",
-                      verbose = FALSE)
+    res <- searchFile(mg, type = "studies", accession = "MGYS00005292", verbose = FALSE)
     expect_true(all(res$type == "studies"))
     expect_true(is.data.frame(res))
     expect_true(grepl("https", res$download_url[1]))

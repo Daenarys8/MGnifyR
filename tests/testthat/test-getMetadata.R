@@ -21,7 +21,6 @@ test_that("getMetadata", {
     expect_equal(res$run_accession, "ERR1811651")
     # When metadata is not found, should give a warning and the result should
     # be empty tibble
-    expect_warning(res <-
-                       getMetadata(mg, "MGYS00005292", verbose = FALSE))
+    expect_warning(res <- getMetadata(mg, "MGYS00005292", verbose = FALSE))
     expect_true(ncol(res) == 0 && nrow(res) == 0)
 })
