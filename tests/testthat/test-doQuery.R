@@ -3,69 +3,18 @@ test_that("doQuery", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(doQuery(mg,
-                         type = "studiess",
-                         accession = "test"))
-    
-    expect_error(doQuery(
-        mg,
-        type = "studies",
-        accession = c("studies", "assembly"),
-        as.df = NULL
-    ))
-    expect_error(doQuery(
-        mg,
-        type = c("studies", "assembly"),
-        accession = "studies"
-    ))
-    expect_error(doQuery(mg,
-                         type = "studies",
-                         accession = 0, ))
-    
-    expect_error(doQuery(mg,
-                         type = 0,
-                         accession = "test",))
-    
-    expect_error(doQuery(
-        mg,
-        type = "studies",
-        accession = c(TreeSE, "phyloseq"),
-    ))
-    expect_error(
-        doQuery(
-            mg,
-            type = "studies",
-            accession = "TreeSE",
-            as.df = FALSE,
-            max.hits = 10.5,
-            use.cache = TRUE
-        )
-    )
-    expect_error(
-        doQuery(
-            mg,
-            type = "studies",
-            accession = c("TreeSE", "phyloseq"),
-            as.df = FALSE,
-            max.hits = FALSE,
-            use.cache = 10
-        )
-    )
-    expect_error(doQuery(mg,
-                         type = "studies",
-                         accession = T))
-    expect_error(doQuery(mg,
-                         type = "studies",
-                         accession = 8.5))
-    expect_error(doQuery(mg,
-                         type = TRUE,
-                         accession = "test",))
-    expect_error(doQuery(mg,
-                         type = 4.9,
-                         accession = "test",))
-    expect_error(doQuery(mg,
-                         type = "studies",
-                         accession = 3,))
+    expect_error(doQuery(mg, type = "studiess", accession = "test"))
+    expect_error(doQuery(mg, type = "studies", as.df = NULL))
+    expect_error(doQuery( mg, type = c("studies", "assembly")))
+    expect_error(doQuery(mg, type = "studies", accession = 0))
+    expect_error(doQuery(mg, type = 0))
+    expect_error(doQuery( mg, type = "studies", max.hits = 10.5 ))
+    expect_error(doQuery( mg, type = "studies", use.cache = 10))
+    expect_error(doQuery(mg, type = "studies", accession = T))
+    expect_error(doQuery(mg, type = "studies", accession = 8.5))
+    expect_error(doQuery(mg, type = TRUE))
+    expect_error(doQuery(mg, type = 4.9))
+    expect_error(doQuery(mg, type = "studies", accession = 3))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

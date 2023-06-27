@@ -3,92 +3,19 @@ test_that("searchAnalysis", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "studies",
-            accession = "test",
-            use.cache = "studies",
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = studies,
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "samples",
-            accession = assembly,
-
-        )
-    )
-    
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "studies",
-            accession = 67,
-
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "studies",
-            accession = TRUE,
-
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = 77,
-            accession = c("taxonomy-ssu", "go-slim"),
-
-        )
-    )
-    
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = NULL,
-            accession = "test",
-
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "studies",
-            accession = "test",
-            use.cache = 80,
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "samples",
-            accession = "test",
-            use.cache = No,
-        )
-    )
-    expect_error(
-        searchAnalysis(
-            mg,
-            type = "samples",
-            accession = "test",
-            verbose = 20
-        )
-    )
-    expect_error(searchAnalysis(
-        mg,
-        type = "samples",
-        accession = "test",
-        verbose = "Tree"
-    ))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = "studies"))
+    expect_error(searchAnalysis(mg, type = TRUE ))
+    expect_error(searchAnalysis(mg, type = "studies", accession = 67))
+    expect_error(searchAnalysis(mg, type = "studies", accession = 6.7))
+    expect_error(searchAnalysis(mg, type = "studies", accession = TRUE))
+    expect_error(searchAnalysis(mg, type = 77))
+    expect_error(searchAnalysis(mg, type = 7.7))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = 80))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = 8.0))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "test", use.cache = "NO"))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = 20))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = 2.0))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = "Tree"))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

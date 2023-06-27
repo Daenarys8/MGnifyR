@@ -6,52 +6,20 @@ test_that("MgnifyClient", {
     
     expect_error(MgnifyClient(username = 8))
     expect_error(MgnifyClient(username = 6.5))
-    expect_error(MgnifyClient(username = "test",
-                              password = 28))
-    expect_error(MgnifyClient(
-        username = "test",
-        password = "study",
-        cacheDir = tree,
-        
-    ))
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "study",
-            cacheDir = "TreeSE",
-            useMemCache = tree,
-            url = "taxonomy-ssu",
-        )
-    )
-    expect_error(
-        MgnifyClient(
-            username = TRUE,
-            password = "study",
-            useCache = 87,
-            cacheDir = "TreeSE",
-            url = "taxonomy-ssu",
-        )
-    )
-    expect_error(MgnifyClient(username = "test",
-                              password = TRUE,))
-    expect_error(MgnifyClient(username = "test",
-                              password = tree,))
-    expect_error(MgnifyClient(username = "tree",
-                              password = "test",))
-    expect_error(MgnifyClient(
-        username = "test",
-        password = "test",
-        cacheDir = "TreeSE",
-        url = 5,
-    ))
-    expect_error(
-        MgnifyClient(
-            username = "test",
-            password = "test",
-            cacheDir = "TreeSE",
-            url = TreeSE,
-        )
-    )
+    expect_error(MgnifyClient(password = 28))
+    expect_error(MgnifyClient(password = 28.8))
+    expect_error(MgnifyClient(username = TRUE))
+    expect_error(MgnifyClient(password = TRUE))
+    expect_error(MgnifyClient(url = 5))
+    expect_error(MgnifyClient(url = 5.7))
+    expect_error(MgnifyClient(url = FALSE))
+    expect_error(MgnifyClient(useMemCache =  NULL))
+    expect_error(MgnifyClient(cacheDir = TRUE))
+    expect_error(MgnifyClient(cacheDir = 10))
+    expect_error(MgnifyClient(cacheDir = 5.4))
+    expect_error(MgnifyClient(useCache = 5))
+    expect_error(MgnifyClient(useCache = 8.9))
+    expect_error(MgnifyClient(useCache = NULL))
     
     
     # Test that slots are updated. Change arguments --> check that values

@@ -3,178 +3,26 @@ test_that("getResult", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = "test",
-        output = 10,
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = "studies",
-        output = Tree,
-        
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = 3.9,
-        output = "TreeSE"
-        
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = 52,
-        output = "TreeSE",
-        
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = NULL,
-        output = "TreeSE",
-        
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = "taxonomy-ssu",
-        output = NULL,
-        
-        
-    )))
-    expect_error(suppressWarnings(getResult(
-        mg,
-        accession = c("taxonomy-ssu", "go-slim"),
-        output = "TreeSE",
-        get.taxa = 7,
-        
-        
-    )))
-    
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "test",
-            output = "TreeSE",
-            get.taxa = NULL,
-            
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "studies",
-            output = "TreeSE",
-            get.taxa = Test,
-            
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("studies", "assembly"),
-            output = "TreeSE",
-            get.taxa = "TreeSE",
-            
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "TreeSE",
-            output = "TreeSE",
-            get.func = 2,
-            
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("TreeSE", "phyloseq"),
-            output = "TreeSE",
-            get.func = NULL,
-            
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "taxonomy-ssu",
-            output = "TreeSE",
-            use.cache = 8,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("taxonomy-ssu", "go-slim"),
-            output = "TreeSE",
-            use.cache = NULL,
-            
-        )
-    ))
-    
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "test",
-            output = "TreeSE",
-            get.func = "test",
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "studies",
-            output = "TreeSE",
-            use.cache = "test"
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("studies", "assembly"),
-            output = "TreeSE",
-            verbose = test,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "TreeSE",
-            output = "TreeSE",
-            verbose = 9,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = c("TreeSE", "phyloseq"),
-            output = "TreeSE",
-            verbose = NULL,
-            
-        )
-    ))
-    expect_error(suppressWarnings(
-        getResult(
-            mg,
-            accession = "taxonomy-ssu",
-            output = "TreeSE",
-            verbose = "TreeSE",
-            
-        )
-    ))
+    expect_error(getResult(mg, accession = "test", output = 10))
+    expect_error(getResult(mg, accession = "studies", output = Tree ))
+    expect_error(getResult(mg, accession = 3.9))
+    expect_error(getResult(mg, accession = 52))
+    expect_error(getResult(mg, accession = NULL))
+    expect_error(getResult(mg, accession = "taxonomy-ssu", output = NULL))
+    expect_error(getResult(mg, accession = c("taxonomy-ssu", "go-slim"), get.taxa = 7))
+    expect_error(getResult(mg, accession = "test", get.taxa = NULL))
+    expect_error(getResult(mg, accession = "studies", get.taxa = Test))
+    expect_error(getResult(mg, accession = c("studies", "assembly"), get.taxa = "TreeSE"))
+    expect_error(getResult(mg, accession = "TreeSE", get.func = 2))
+    expect_error(getResult(mg, accession = c("TreeSE", "phyloseq"), get.func = NULL))
+    expect_error(getResult(mg, accession = "taxonomy-ssu", use.cache = 8))
+    expect_error(getResult(mg, accession = c("taxonomy-ssu", "go-slim"),use.cache = NULL))
+    expect_error(getResult(mg, accession = "test", get.func = "test"))
+    expect_error(getResult(mg, accession = "studies", use.cache = "test"))
+    expect_error(getResult(mg, accession = c("studies", "assembly"), verbose = test))
+    expect_error(getResult(mg, accession = "TreeSE", verbose = 9))
+    expect_error(getResult(mg, accession = c("TreeSE", "phyloseq"), verbose = NULL))
+    expect_error(getResult(mg, accession = "taxonomy-ssu", verbose = "TreeSE"))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

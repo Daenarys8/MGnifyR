@@ -3,99 +3,19 @@ test_that("getFile", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(getFile(
-        mg,
-        url = 10,
-        file = "studies",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "studies",
-        file = 10,
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "TreeSE",
-        file = "studies",
-        read.func = 10,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "taxonomy--ssu",
-        file = "studies",
-        read.func = NULL,
-        use.cache = 10
-    ))
+    expect_error(getFile( mg, url = 10))
+    expect_error(getFile( mg, url = "studies", file = 10))
+    expect_error(getFile( mg, url = "TreeSE", read.func = 10))
+    expect_error(getFile( mg, url = "taxonomy--ssu", use.cache = 10))
+    expect_error(getFile( mg, url = "test", use.cache = test))
     
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = "TreeSE",
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(getFile(
-        mg,
-        url = "test",
-        file = "taxonomy-ssu",
-        read.func = NULL,
-        use.cache = test
-    ))
-    
-    expect_error(getFile(
-        mg,
-        url = 25,
-        file = NULL,
-        read.func = NULL,
-        use.cache = TRUE
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = TRUE,
-        type = "studies",
-        use.cache = TRUE,
-        verbose = TRUE
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = FALSE,
-        type = "studies",
-        use.cache = TRUE,
-        verbose = TRUE
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = NULL,
-        type = "samples",
-        use.cache = TRUE,
-        verbose = TRUE
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = c("studies", "assembly"),
-        type = "samples",
-        use.cache = NULL,
-        verbose = TRUE
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = c("studies", "assembly"),
-        type = "samples",
-        use.cache = TRUE,
-        verbose = NULL
-    ))
-    expect_error(searchFile(
-        mg,
-        accession = 12,
-        type = "samples",
-        use.cache = TRUE,
-        verbose = NULL
-    ))
+    expect_error(searchFile( mg, accession = TRUE ))
+    expect_error(searchFile( mg, accession = FALSE))
+    expect_error(searchFile( mg, accession = NULL ))
+    expect_error(searchFile( mg, accession = "studies", type = "samples", use.cache = NULL))
+    expect_error(searchFile( mg, accession = "studies", type = "samples", verbose = NULL))
+    expect_error(searchFile( mg, accession = 12))
+    expect_error(searchFile( mg, accession = 12.6))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
