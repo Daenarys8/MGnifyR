@@ -3,7 +3,7 @@ test_that("doQuery", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(doQuery(mg, type = "studiess", accession = "test"))
+    expect_error(doQuery(mg, type = "studiess", accession = "MGYS00005292"))
     expect_error(doQuery(mg, type = "studies", as.df = NULL))
     expect_error(doQuery( mg, type = c("studies", "assembly")))
     expect_error(doQuery(mg, type = "studies", accession = 0))

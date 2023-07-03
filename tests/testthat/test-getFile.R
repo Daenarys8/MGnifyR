@@ -12,8 +12,8 @@ test_that("getFile", {
     expect_error(searchFile( mg, accession = TRUE ))
     expect_error(searchFile( mg, accession = FALSE))
     expect_error(searchFile( mg, accession = NULL ))
-    expect_error(searchFile( mg, accession = "studies", type = "samples", use.cache = NULL))
-    expect_error(searchFile( mg, accession = "studies", type = "samples", verbose = NULL))
+    expect_error(searchFile( mg, accession = "MGYS00005292", type = "samples", use.cache = NULL))
+    expect_error(searchFile( mg, accession = "MGYS00005292", type = "samples", verbose = NULL))
     expect_error(searchFile( mg, accession = 12))
     expect_error(searchFile( mg, accession = 12.6))
     

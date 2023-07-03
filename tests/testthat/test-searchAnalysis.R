@@ -3,19 +3,19 @@ test_that("searchAnalysis", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = "studies"))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292", use.cache = "studies"))
     expect_error(searchAnalysis(mg, type = TRUE ))
     expect_error(searchAnalysis(mg, type = "studies", accession = 67))
     expect_error(searchAnalysis(mg, type = "studies", accession = 6.7))
     expect_error(searchAnalysis(mg, type = "studies", accession = TRUE))
     expect_error(searchAnalysis(mg, type = 77))
     expect_error(searchAnalysis(mg, type = 7.7))
-    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = 80))
-    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = 8.0))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "test", use.cache = "NO"))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = 20))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = 2.0))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "test", verbose = "Tree"))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292", use.cache = 80))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292t", use.cache = 8.0))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", use.cache = "NO"))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = 20))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = 2.0))
+    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = "Tree"))
     
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))

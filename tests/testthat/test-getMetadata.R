@@ -3,11 +3,11 @@ test_that("getMetadata", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
     
-    expect_error(getMetadata(mg, accession = "studies", use.cache = "test"))
+    expect_error(getMetadata(mg, accession = "MGYS00005292", use.cache = "test"))
     expect_error(getMetadata(mg, accession = TRUE))
     expect_error(getMetadata(mg, accession = 4.5))
-    expect_error(getMetadata(mg, accession = "test", use.cache = 10))
-    expect_error(getMetadata(mg, accession = "test", verbose = 10))
+    expect_error(getMetadata(mg, accession = "MGYS00005292", use.cache = 10))
+    expect_error(getMetadata(mg, accession = "MGYS00005292", verbose = 10))
     expect_error(getMetadata(mg, accession = 87))
     
     # Require internet access
