@@ -2,17 +2,26 @@ context("getMetadata")
 test_that("getMetadata", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
-    
-    expect_error(getMetadata(mg, accession = "MGYS00005292", use.cache = "test"))
+
+    expect_error(getMetadata(1))
+    expect_error(getMetadata("test"))
+    expect_error(getMetadata(TRUE))
+
     expect_error(getMetadata(mg, accession = TRUE))
-    expect_error(getMetadata(mg, accession = 4.5))
-    expect_error(getMetadata(mg, accession = "MGYS00005292", use.cache = 10))
-    expect_error(getMetadata(mg, accession = "MGYS00005292", verbose = 10))
-    expect_error(getMetadata(mg, accession = 87))
-    
+    expect_error(getMetadata(mg, accession = 1))
+    expect_error(getMetadata(mg, accession = c(1, 2)))
+
+    expect_error(getMetadata(mg, accession = "test", use.cache = NULL))
+    expect_error(getMetadata(mg, accession = "test", use.cache = 1))
+    expect_error(getMetadata(mg, accession = "test", use.cache = c(TRUE, FALSE)))
+
+    expect_error(getMetadata(mg, accession = "test", verbose = NULL))
+    expect_error(getMetadata(mg, accession = "test", verbose = 1))
+    expect_error(getMetadata(mg, accession = "test", verbose = c(TRUE, FALSE)))
+
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
-    
+
     # Test that correct metadata is fetched based on certain accession ID.
     res <- getMetadata(mg, "MGYA00097621", verbose = FALSE)
     expect_equal(nrow(res), 1)
