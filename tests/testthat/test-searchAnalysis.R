@@ -2,24 +2,33 @@ context("searchAnalysis")
 test_that("searchAnalysis", {
     # Test that input check caches wrong arguments.
     mg <- MgnifyClient()
-    
-    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292", use.cache = "studies"))
-    expect_error(searchAnalysis(mg, type = TRUE ))
-    expect_error(searchAnalysis(mg, type = "studies", accession = 67))
-    expect_error(searchAnalysis(mg, type = "studies", accession = 6.7))
+
+    expect_error(searchAnalysis(TRUE))
+    expect_error(searchAnalysis("test"))
+    expect_error(searchAnalysis(NULL))
+    expect_error(searchAnalysis(1))
+
+    expect_error(searchAnalysis(mg, type = TRUE, accession = "test"))
+    expect_error(searchAnalysis(mg, type = "test", accession = "test"))
+    expect_error(searchAnalysis(mg, type = NULL, accession = "test"))
+    expect_error(searchAnalysis(mg, type = c("studies", "samples", accession = "test")))
+
     expect_error(searchAnalysis(mg, type = "studies", accession = TRUE))
-    expect_error(searchAnalysis(mg, type = 77))
-    expect_error(searchAnalysis(mg, type = 7.7))
-    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292", use.cache = 80))
-    expect_error(searchAnalysis(mg, type = "studies", accession = "MGYS00005292t", use.cache = 8.0))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", use.cache = "NO"))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = 20))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = 2.0))
-    expect_error(searchAnalysis(mg, type = "samples", accession = "MGYS00005292", verbose = "Tree"))
-    
+    expect_error(searchAnalysis(mg, type = "studies", accession = NULL))
+    expect_error(searchAnalysis(mg, type = "studies", accession = 1))
+    expect_error(searchAnalysis(mg, type = "studies", accession = c(TRUE, FALSE)))
+
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = NULL))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = 1))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", use.cache = "test"))
+
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", verbose = NULL))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", verbose = 1))
+    expect_error(searchAnalysis(mg, type = "studies", accession = "test", verbose = "test"))
+
     # Require internet access
     skip_if(httr::http_error("https://www.ebi.ac.uk/metagenomics/api/v1"))
-    
+
     # Test that correct analysis IDs are found based on study ID.
     expect_warning(res <- searchAnalysis(mg, "studies", "MGYA00097621", verbose = FALSE))
     expect_true(is.null(res))
